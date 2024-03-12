@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Ratting from "../Components/Ratting";
 
 const ProductCards = ({ GridList, products }) => {
-  // console.log(products)
+  console.log(products)
   return (
     <div
       className={`shop-product-wrap row justify-content-center ${
@@ -20,7 +20,7 @@ const ProductCards = ({ GridList, products }) => {
               </div>
               {/* product action link  */}
               <div className="product-action-link">
-                <Link to={`/shop/${product.id}`}>
+                <Link to= {`/shop/${product.id}`}>
                   <i className="icofont-eye"></i>
                 </Link>
                 <a href="#">

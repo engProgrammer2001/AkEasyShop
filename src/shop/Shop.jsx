@@ -3,13 +3,14 @@ import PageHeader from "../Components/PageHeader";
 import Data from "../products.json";
 import ProductCards from "./ProductCards";
 import Pagination from "./Pagination";
+import Search from "./Search";
 
 const showResults = "Showing 01 - 12 of 139 Results";
 
 const Shop = () => {
   const [GridList, setGridList] = useState(true);
   const [products, setproducts] = useState(Data);
-  // console.log(Data)
+  console.log(Data)
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,10 +18,7 @@ const Shop = () => {
 
   const indexOfLastproduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastproduct - productsPerPage;
-  const currentProducts = products.slice(
-    indexOfFirstProduct,
-    indexOfLastproduct
-  );
+  const currentProducts = products.slice(indexOfFirstProduct,indexOfLastproduct);
 
   // function to change the current page
   const paginate = (pageNumber) => {
@@ -56,19 +54,25 @@ const Shop = () => {
 
                 {/* products card  */}
                 <div>
-                  <ProductCards GridList={GridList} products={products} />
+                  <ProductCards GridList={GridList} products={currentProducts} />
                 </div>
 
                 {/* Pagination here  */}
-                <Pagination
-                  productsPerPage = {productsPerPage}
-                  totalProduct = {products.length}
-                  paginate = {paginate}
-                  activePage = {currentPage}
-                />
+                <Pagination 
+                productsPerPage = {productsPerPage}
+                totalProducts = {products.length}
+                paginate = {paginate} 
+                activePage = {currentPage}
+               />
+
               </article>
             </div>
-            <div className="col-lg-4 col-12">right side</div>
+            {/* Right side code start Here  */}
+            <div className="col-lg-4 col-12">
+              <aside>
+                <Search products={products} GridList={GridList}/>
+              </aside>
+            </div>
           </div>
         </div>
       </div>
